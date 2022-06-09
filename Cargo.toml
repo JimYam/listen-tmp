@@ -1,0 +1,10 @@
+[workspace]
+
+members = [
+	"pallets/*",
+]
+exclude = [
+	"pallets/nicks",
+]
+[profile.release]
+panic = "unwind"
