@@ -25,7 +25,7 @@ impl-trait-for-tuples = "0.2.1"
 frame-benchmarking = { default-features = false, git = 'https://github.com/paritytech/substrate', branch = 'polkadot-v0.9.23', optional = true }
 
 # local
-listen-primitives = { git = "https://github.com/listenofficial/listen-parachain.git", default-features = false, branch = 'polkadot-v0.9.23' }
+listen-primitives = { path = "../../primitives", default-features = false }
 
 [dev-dependencies]
 sp-io ={  git = 'https://github.com/paritytech/substrate', branch = 'polkadot-v0.9.23' }

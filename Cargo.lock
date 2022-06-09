@@ -1051,7 +1051,6 @@ dependencies = [
 [[package]]
 name = "listen-primitives"
 version = "1.0.0"
-source = "git+https://github.com/listenofficial/listen-parachain.git?branch=polkadot-v0.9.23#c3006bc1b7817c63404540a6b8e6f985b686e750"
 dependencies = [
  "frame-system",
  "parity-scale-codec",

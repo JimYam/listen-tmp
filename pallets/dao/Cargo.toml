@@ -24,7 +24,7 @@ frame-system = { default-features = false, git = 'https://github.com/paritytech/
 pallet-timestamp = { default-features = false, git = 'https://github.com/paritytech/substrate', branch = 'polkadot-v0.9.23' }
 
 # local
-listen-primitives = { git = "https://github.com/listenofficial/listen-parachain.git", default-features = false, branch = 'polkadot-v0.9.23' }
+listen-primitives = { path = "../../primitives", default-features = false }
 
 
 [dev-dependencies]
