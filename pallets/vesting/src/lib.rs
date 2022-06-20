@@ -62,7 +62,7 @@ pub const VESTING_LOCK_ID: LockIdentifier = *b"ormlvest";
 /// Benefits would be granted gradually, `per_period` amount every `period`
 /// of blocks after `start`.
 #[derive(Clone, Encode, Decode, PartialEq, Eq, RuntimeDebug, MaxEncodedLen, TypeInfo)]
-pub struct VestingSchedule<BlockNumber, Balance: HasCompact> {
+pub struct VestingSchedule<BlockNumber, Balance: HasCompact + MaxEncodedLen> {
 	/// Vesting starting block
 	pub start: BlockNumber,
 	/// Number of blocks between vest
@@ -74,7 +74,7 @@ pub struct VestingSchedule<BlockNumber, Balance: HasCompact> {
 	pub per_period: Balance,
 }
 
-impl<BlockNumber: AtLeast32Bit + Copy, Balance: AtLeast32Bit + Copy>
+impl<BlockNumber: AtLeast32Bit + Copy, Balance: AtLeast32Bit + Copy + MaxEncodedLen>
 	VestingSchedule<BlockNumber, Balance>
 {
 	/// Returns the end of all periods, `None` if calculation overflows.
