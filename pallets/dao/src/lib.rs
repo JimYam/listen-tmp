@@ -270,10 +270,7 @@ pub mod pallet {
 				<T as pallet::Config<I>>::BaseCallFilter::contains(&proposal),
 				Error::<T, I>::DisallowFunc
 			);
-			let members = T::ListenHandler::get_room_council(room_id.into())?;
 			let room_owner = T::ListenHandler::get_root(room_id.into())?;
-
-			ensure!(members.contains(&who), Error::<T, I>::NotMember);
 			ensure!(room_owner == who, Error::<T, I>::NotRoomOwner);
 
 			let proposal_len = proposal.using_encoded(|x| x.len());
