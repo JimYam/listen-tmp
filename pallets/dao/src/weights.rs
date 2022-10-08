@@ -43,6 +43,8 @@ use frame_support::{
 };
 use sp_std::marker::PhantomData;
 
+const default_weight: u64 = 20_0000_0000;
+
 /// Weight functions needed for pallet_collective.
 pub trait WeightInfo {
 	fn set_members(_m: u32, _n: u32, _p: u32) -> Weight;
@@ -61,151 +63,67 @@ pub trait WeightInfo {
 pub struct SubstrateWeight<T>(PhantomData<T>);
 impl<T: frame_system::Config> WeightInfo for SubstrateWeight<T> {
 	fn set_members(m: u32, n: u32, p: u32) -> Weight {
-		(0 as Weight)
-			.saturating_add((20_933_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((254_000 as Weight).saturating_mul(n as Weight))
-			.saturating_add((28_233_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(2 as Weight))
-			.saturating_add(T::DbWeight::get().reads((1 as Weight).saturating_mul(p as Weight)))
-			.saturating_add(T::DbWeight::get().writes(2 as Weight))
-			.saturating_add(T::DbWeight::get().writes((1 as Weight).saturating_mul(p as Weight)))
+		Weight::from_ref_time(default_weight)
 	}
 	fn execute(b: u32, m: u32) -> Weight {
-		(31_147_000 as Weight)
-			.saturating_add((4_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((115_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(T::DbWeight::get().reads(1 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn propose_execute(b: u32, m: u32) -> Weight {
-		(38_774_000 as Weight)
-			.saturating_add((4_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((226_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(T::DbWeight::get().reads(2 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn propose_proposed(b: u32, m: u32, p: u32) -> Weight {
-		(64_230_000 as Weight)
-			.saturating_add((5_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((138_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((637_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(4 as Weight))
-			.saturating_add(T::DbWeight::get().writes(4 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn vote(m: u32) -> Weight {
-		(57_051_000 as Weight)
-			.saturating_add((220_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(T::DbWeight::get().reads(2 as Weight))
-			.saturating_add(T::DbWeight::get().writes(1 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_early_disapproved(m: u32, p: u32) -> Weight {
-		(61_406_000 as Weight)
-			.saturating_add((225_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((630_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(3 as Weight))
-			.saturating_add(T::DbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_early_approved(b: u32, m: u32, p: u32) -> Weight {
-		(92_864_000 as Weight)
-			.saturating_add((1_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((233_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((597_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(4 as Weight))
-			.saturating_add(T::DbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_disapproved(m: u32, p: u32) -> Weight {
-		(67_942_000 as Weight)
-			.saturating_add((232_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((636_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(4 as Weight))
-			.saturating_add(T::DbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_approved(b: u32, m: u32, p: u32) -> Weight {
-		(99_742_000 as Weight)
-			.saturating_add((1_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((233_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((598_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(5 as Weight))
-			.saturating_add(T::DbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn disapprove_proposal(p: u32) -> Weight {
-		(36_628_000 as Weight)
-			.saturating_add((640_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(T::DbWeight::get().reads(1 as Weight))
-			.saturating_add(T::DbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 }
 
 // For backwards compatibility and tests
 impl WeightInfo for () {
 	fn set_members(m: u32, n: u32, p: u32) -> Weight {
-		(0 as Weight)
-			.saturating_add((20_933_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((254_000 as Weight).saturating_mul(n as Weight))
-			.saturating_add((28_233_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(2 as Weight))
-			.saturating_add(RocksDbWeight::get().reads((1 as Weight).saturating_mul(p as Weight)))
-			.saturating_add(RocksDbWeight::get().writes(2 as Weight))
-			.saturating_add(RocksDbWeight::get().writes((1 as Weight).saturating_mul(p as Weight)))
+		Weight::from_ref_time(default_weight)
 	}
 	fn execute(b: u32, m: u32) -> Weight {
-		(31_147_000 as Weight)
-			.saturating_add((4_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((115_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(RocksDbWeight::get().reads(1 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn propose_execute(b: u32, m: u32) -> Weight {
-		(38_774_000 as Weight)
-			.saturating_add((4_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((226_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(RocksDbWeight::get().reads(2 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn propose_proposed(b: u32, m: u32, p: u32) -> Weight {
-		(64_230_000 as Weight)
-			.saturating_add((5_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((138_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((637_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(4 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(4 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn vote(m: u32) -> Weight {
-		(57_051_000 as Weight)
-			.saturating_add((220_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add(RocksDbWeight::get().reads(2 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(1 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_early_disapproved(m: u32, p: u32) -> Weight {
-		(61_406_000 as Weight)
-			.saturating_add((225_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((630_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(3 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_early_approved(b: u32, m: u32, p: u32) -> Weight {
-		(92_864_000 as Weight)
-			.saturating_add((1_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((233_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((597_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(4 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_disapproved(m: u32, p: u32) -> Weight {
-		(67_942_000 as Weight)
-			.saturating_add((232_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((636_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(4 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn close_approved(b: u32, m: u32, p: u32) -> Weight {
-		(99_742_000 as Weight)
-			.saturating_add((1_000 as Weight).saturating_mul(b as Weight))
-			.saturating_add((233_000 as Weight).saturating_mul(m as Weight))
-			.saturating_add((598_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(5 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn disapprove_proposal(p: u32) -> Weight {
-		(36_628_000 as Weight)
-			.saturating_add((640_000 as Weight).saturating_mul(p as Weight))
-			.saturating_add(RocksDbWeight::get().reads(1 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 }

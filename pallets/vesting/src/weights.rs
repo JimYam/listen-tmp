@@ -28,6 +28,7 @@
 use frame_support::{traits::Get, weights::{Weight, constants::RocksDbWeight}};
 use sp_std::marker::PhantomData;
 
+
 /// Weight functions needed for orml_vesting.
 pub trait WeightInfo {
 	fn vested_transfer() -> Weight;
@@ -35,25 +36,17 @@ pub trait WeightInfo {
 	fn update_vesting_schedules(i: u32, ) -> Weight;
 }
 
+const default_weight: u64 = 20_0000_0000;
+
 /// Default weights.
 impl WeightInfo for () {
 	fn vested_transfer() -> Weight {
-		(69_000_000 as Weight)
-			.saturating_add(RocksDbWeight::get().reads(4 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(4 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn claim(i: u32, ) -> Weight {
-		(31_747_000 as Weight)
-			// Standard Error: 4_000
-			.saturating_add((63_000 as Weight).saturating_mul(i as Weight))
-			.saturating_add(RocksDbWeight::get().reads(2 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(2 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 	fn update_vesting_schedules(i: u32, ) -> Weight {
-		(29_457_000 as Weight)
-			// Standard Error: 4_000
-			.saturating_add((117_000 as Weight).saturating_mul(i as Weight))
-			.saturating_add(RocksDbWeight::get().reads(2 as Weight))
-			.saturating_add(RocksDbWeight::get().writes(3 as Weight))
+		Weight::from_ref_time(default_weight)
 	}
 }
